@@ -11,5 +11,6 @@ public class Counter {
 	public int increment() {
 		return ++count;
 	}
+
 	
 }
