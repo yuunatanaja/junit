@@ -10,7 +10,6 @@ class CalculatorTest {
 	void testDivide() {
 			
 	Calculator calculator = new Calculator();
-			int result = calculator.divide(2,0);
 		assertThrows(IllegalArgumentException.class,() -> calculator.divide(2,0));
 	}
 
