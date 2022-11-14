@@ -7,23 +7,24 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 class EmployeeTest {
 	
-	Employee employee = new Employee();
+	List<Employee> empList = new ArrayList<>();
 
 	@Test
 	void testLoad() throws IOException {
-		InputStream sytemin = System.in;
-		InputStream fileStream = new FileInputStream("Employee.tex");
-		InputStream bufferedStream =  new BufferedInputStream(fileStream);
-		employee.load(fileStream);
-		assertEquals("Ichiro",employee.getFirstName(),"load()メソッドが失敗しました");
-		assertEquals("Tanaka",employee.getLastName(),"load()メソッドが失敗しました");
-		assertEquals("ichiro@example.com",employee.getEmail(),"load()メソッドが失敗しました");
+		InputStream input = getClass().getResourceAsStream("Employee.txt");
+		InputStream bufferedStream = new BufferedInputStream(input);
+		assertEquals("Ichiro",empList.get(0),"load()メソッドが失敗しました");
+		assertEquals("Tanaka",empList.get(1),"load()メソッドが失敗しました");
+		assertEquals("ichiro@example.com",empList.get(2),"load()メソッドが失敗しました");
 		bufferedStream.close();
+		
 		
 		
 		
