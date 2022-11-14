@@ -19,11 +19,18 @@ class EmployeeTest {
 	@Test
 	void testLoad() throws IOException {
 		InputStream input = getClass().getResourceAsStream("Employee.txt");
-		InputStream bufferedStream = new BufferedInputStream(input);
-		assertEquals("Ichiro",empList.get(0),"load()メソッドが失敗しました");
-		assertEquals("Tanaka",empList.get(1),"load()メソッドが失敗しました");
-		assertEquals("ichiro@example.com",empList.get(2),"load()メソッドが失敗しました");
-		bufferedStream.close();
+		//戻り値の受け取り
+		List<Employee> actual = Employee.load(input);
+		//リストから情報の取り出し
+		Employee employee = actual.get(0);
+		//assertAllは１つのテストに失敗しても残りのテストがすべて実行される
+		assertAll(
+				() -> assertEquals(1,actual.size()),
+		        () -> assertEquals("Ichiro",employee.getFirstName()),
+		        () -> assertEquals("Tanaka",employee.getLastName()),
+		        () -> assertEquals("ichiro@example.com",employee.getEmail())
+		        		);
+		
 		
 		
 		
